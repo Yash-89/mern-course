@@ -1,6 +1,7 @@
 import { Container, VStack, Heading, Box, Input, Button, Flex } from "@chakra-ui/react";
 import { useState } from "react"
 import { useProductStore } from "../store/product.js";
+import { Toaster, toaster } from "@/components/ui/toaster.jsx";
 
 const CreatePage = () => {
   const [newProduct, setNewProduct] = useState({
@@ -19,6 +20,19 @@ const CreatePage = () => {
         price: "",
         image: "",
       });
+      toaster.create({
+        title: "Success",
+        description: message,
+        status: "success",
+        isClosable: true,
+      })
+    } else {
+      toaster.create({
+        title: "Error",
+        description: message,
+        status: "error",
+        isClosable: true,
+      })
     }
     console.log("Success: ", success, "Message: ", message);
   }
