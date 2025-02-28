@@ -29,7 +29,7 @@ const Navbar = () => {
 
         <HStack spacing={2} alignItems={"center"}>
           <Link to={"/create"}>
-          <Button fontSize={20} colorScheme="blue" variant="subtle">
+          <Button fontSize={20} colorScheme="blue" variant="surface">
             <LuSquarePlus />
           </Button>
           </Link>
