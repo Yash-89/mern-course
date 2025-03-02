@@ -28,7 +28,7 @@ const HomePage = () => {
         </Text>
 
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }}>
-          {products.map((product) => (
+          {products.slice().reverse().map((product) => (
             <ProductCard key={product._id} product={product}/>
           ))}
         </SimpleGrid>
