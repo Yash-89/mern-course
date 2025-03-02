@@ -1,7 +1,7 @@
 import { Container, VStack, Heading, Box, Input, Button, Flex } from "@chakra-ui/react";
-import { useState } from "react"
+import { Toaster, toaster } from "@/components/ui/toaster";
+import { useState } from "react";
 import { useProductStore } from "../store/product.js";
-import { Toaster, toaster } from "@/components/ui/toaster.jsx";
 
 const CreatePage = () => {
   const [newProduct, setNewProduct] = useState({
@@ -22,20 +22,24 @@ const CreatePage = () => {
       });
       toaster.create({
         title: "Success",
+        type: "success",
         description: message,
-        status: "success",
+        status: "visible",
+        placement: "top",
         isClosable: true,
-      })
+      });
     } else {
       toaster.create({
         title: "Error",
+        type: "error",
         description: message,
-        status: "error",
+        status: "visible",
+        placement: "top",
         isClosable: true,
-      })
+      });
     }
     console.log("Success: ", success, "Message: ", message);
-  }
+  };
 
   return (
     <Container maxW="container.sm" mt={8}>
@@ -77,6 +81,7 @@ const CreatePage = () => {
         </Box>
       </VStack>
       </Flex>
+      <Toaster />
     </Container>
   )
 }

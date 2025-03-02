@@ -6,7 +6,7 @@ import React from 'react';
 const Navbar = () => {
   
   return (
-    <Container maxW={"1140px"} px={4}>
+    <Container maxW={"1140px"} px={4} py={2}>
       <Flex
         h={16}
         alignItems={"center"}
@@ -21,10 +21,14 @@ const Navbar = () => {
           fontWeight="bold"
           textTransform="uppercase"
           textAlign="center"
-          background="linear-gradient(to right, #00d1ff, #009aff)"
+          background="linear-gradient(to right, #00f1ff, #009aff)"
           bgClip="text"
         >
-          <Link to='/'>Product Store</Link>
+          <Link to='/'>
+            <HStack>
+              Product Store <LuShoppingCart color='#0095ff' fill='#0095ff'/>
+            </HStack>
+          </Link>
         </Text>
 
         <HStack spacing={2} alignItems={"center"}>
