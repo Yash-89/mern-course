@@ -45,7 +45,7 @@ const ProductCard = ({ product }) => {
             >
                 <Image src={product.image} alt={product.name} h={48} w="full" objectFit="cover" _hover={{ transform: "scale(1.02)" }} transition="all 0.3s" />
                 <Box p={4}>
-                    <Heading as="h3" size="md" textAlign="center">
+                    <Heading as="h3" size="md" textAlign="center" mb={2}>
                         {product.name}
                     </Heading>
 
