@@ -1,5 +1,5 @@
 import { Container, VStack, Heading, Box, Input, Button, Flex } from "@chakra-ui/react";
-import { Toaster, toaster } from "@/components/ui/toaster";
+import { toaster } from "@/components/ui/toaster.jsx";
 import { useState } from "react";
 import { useProductStore } from "../store/product.js";
 
@@ -24,8 +24,6 @@ const CreatePage = () => {
         title: "Success",
         type: "success",
         description: message,
-        status: "visible",
-        placement: "top",
         isClosable: true,
       });
     } else {
@@ -33,8 +31,6 @@ const CreatePage = () => {
         title: "Error",
         type: "error",
         description: message,
-        status: "visible",
-        placement: "top",
         isClosable: true,
       });
     }
@@ -81,7 +77,6 @@ const CreatePage = () => {
         </Box>
       </VStack>
       </Flex>
-      <Toaster />
     </Container>
   )
 }

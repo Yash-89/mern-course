@@ -1,5 +1,6 @@
 import { Box, Image, Heading, Text, HStack, VStack, Button, Input } from '@chakra-ui/react';
 import { LuPencil, LuDelete } from 'react-icons/lu';
+import { toaster } from './ui/toaster';
 import React, { useState } from 'react'
 import { useColorModeValue } from './ui/color-mode';
 import { useProductStore } from '../store/product.js';
@@ -23,11 +24,39 @@ const ProductCard = ({ product }) => {
 
     const handleDeleteProduct = async (pid) => {
         const { success, message } = await deleteProduct(pid);
+        if (success)
+            toaster.create({
+                title: "Success",
+                type: "success",
+                description: message,
+                isClosable: true
+            })
+        else
+            toaster.create({
+                title: "Error",
+                type: "error",
+                description: message,
+                isClosable: true
+            })
         console.log("Success: ", success, "Message: ", message);
     }
 
     const handleUpdateProduct = async (pid) => {
         const { success, message } = await updateProduct(pid, updatedProduct);
+        if (success)
+            toaster.create({
+                title: "Success",
+                type: "success",
+                description: message,
+                isClosable: true
+            })
+        else
+            toaster.create({
+                title: "Error",
+                type: "error",
+                description: message,
+                isClosable: true
+            })
         console.log("Success: ", success, "Message: ", message);
     }
 
@@ -54,8 +83,9 @@ const ProductCard = ({ product }) => {
                     </Text>
 
                     <HStack spacing={2}>
+
                     <DialogRoot>
-                        <DialogTrigger>
+                        <DialogTrigger asChild>
                             <Button
                                 variant="outline"
                                 bg="#7DD3FC"
@@ -94,7 +124,7 @@ const ProductCard = ({ product }) => {
                                 </VStack>
                             </DialogBody>
                             <DialogFooter>
-                                <DialogActionTrigger>
+                                <DialogActionTrigger asChild>
                                     <Button variant="outline">Cancel</Button>
                                 </DialogActionTrigger>
                                 <DialogActionTrigger asChild>
@@ -104,16 +134,36 @@ const ProductCard = ({ product }) => {
                         </DialogContent>
                     </DialogRoot>
 
+                    <DialogRoot>
+                        <DialogTrigger asChild>
+                            <Button
+                                variant="outline"
+                                bg="#FCA5A5"
+                                _hover={{ bg: "#F87171" }}
+                                _active={{ transform: "scale(0.975)" }}
+                            >
+                                <LuDelete color='black' />
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Delete Product</DialogTitle>
+                                <DialogCloseTrigger />
+                            </DialogHeader>
+                            <DialogBody>
+                                <Text>Are you sure you want to Delete this product?</Text>
+                            </DialogBody>
+                            <DialogFooter>
+                                <DialogActionTrigger asChild>
+                                    <Button variant="outline">Cancel</Button>
+                                </DialogActionTrigger>
+                                <DialogActionTrigger asChild>
+                                    <Button color="red" onClick={() => handleDeleteProduct(product._id)}>Delete</Button>
+                                </DialogActionTrigger>
+                            </DialogFooter>
+                        </DialogContent>
+                    </DialogRoot>
 
-                        <Button
-                            variant="outline"
-                            bg="#FCA5A5"
-                            _hover={{ bg: "#F87171" }}
-                            _active={{ transform: "scale(0.975)" }}
-                            onClick={() => handleDeleteProduct(product._id)}
-                        >
-                            <LuDelete color='black' />
-                        </Button>
                     </HStack>
                 </Box>
             </Box>
