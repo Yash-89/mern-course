@@ -37,6 +37,14 @@ const CreatePage = () => {
     console.log("Success: ", success, "Message: ", message);
   };
 
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setNewProduct((prev) => ({
+      ...prev,
+      [name]: name === "price" ? parseFloat(value) || "" : value
+    }));
+  }
+
   return (
     <Container maxW="container.sm" mt={8}>
       <Flex flex={1} justify="center" align="center">
@@ -51,7 +59,7 @@ const CreatePage = () => {
               placeholder="Product Name"
               name="name"
               value={newProduct.name}
-              onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+              onChange={onChangeHandler}
             />
 
             <Input
@@ -59,14 +67,14 @@ const CreatePage = () => {
               name="price"
               type="number"
               value={newProduct.price}
-              onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
+              onChange={onChangeHandler}
             />
 
             <Input
               placeholder="Product Image URL"
               name="image"
               value={newProduct.image}
-              onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
+              onChange={onChangeHandler}
             />
 
             <Button colorscheme="blue" onClick={handleAddProduct} w="full">
