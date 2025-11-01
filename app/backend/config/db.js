@@ -6,7 +6,6 @@ export const connectDB = async () => {
       // ✅ Azure-friendly options
       serverSelectionTimeoutMS: 30000, // Wait up to 30 seconds for server selection
       socketTimeoutMS: 45000, // Socket inactivity timeout
-      retryWrites: true, // Recommended for CosmosDB
       w: "majority",
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
